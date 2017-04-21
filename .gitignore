@@ -1,0 +1,6 @@
+bin/
+obj/
+*.layout
+*.depend
+# plugin not working as planned, so not including it yet
+MEAMouseIcon/
