@@ -31,25 +31,20 @@ DWORD64 FindPattern(DWORD64 StartAddress, DWORD CodeLen, BYTE* Mask, const char*
 
 DWORD WINAPI Start(LPVOID lpParam)
 {
-    //Sleep(5000);
-    HMODULE game = GetModuleHandle(NULL);
-    DWORD64 startadd = (DWORD64)GetProcAddress(game, "JointPosMotionDataDistance");
-    if (!startadd)
-    {
-        //printf("MEAConsoleDisabler: startadd failed!\n");
-        return 0;
-    }
-    DWORD64 target = FindPattern(startadd, 0x500000, pattern, "xxxxxxxxxxxxx", 0);
+    Sleep(1000);
+    DWORD64 game = (DWORD64)GetModuleHandle(NULL);
+    DWORD64 target = FindPattern(game, 0xA000000, pattern, "xxxxxxxxxxxxx", 0);
     if (!target)
     {
-        //printf("MEAConsoleDisabler: target failed!\n");
+        printf("MEAConsoleDisabler: byte pattern not found!\n");
         return 0;
     }
+    printf("MEAConsoleDisabler: target located at %p\n", (void*)target);
     DWORD dwProtect;
-	VirtualProtect((void*)(target + 3), 0x1, PAGE_READWRITE, &dwProtect );
-	*(BYTE*)(target + 3) = 0;
-	VirtualProtect((void*)(target + 3), 0x1, dwProtect, &dwProtect );
-    //printf("MEAConsoleDisabler: done.\n");
+    VirtualProtect((void*)(target + 3), 0x1, PAGE_READWRITE, &dwProtect );
+    *(BYTE*)(target + 3) = 0;
+    VirtualProtect((void*)(target + 3), 0x1, dwProtect, &dwProtect );
+    printf("MEAConsoleDisabler: done.\n");
     return 0;
 }
 
