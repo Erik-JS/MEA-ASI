@@ -1,6 +1,6 @@
 # ASI Plugins for Mass Effect: Andromeda
 
-**Last game version tested:** 1.05 *(build 727902)*
+**Last game version tested:** 1.08 (build 736146)
 
 This repository is *supposed to be* a collection of various plugins (DLL files renamed to *.asi) which provide new features and functionalities to the game. The biggest advantage of ASI plugins is that it's easy for users to choose which features they want, and enable/disable them at any time. Anyone can make and distribute their own plugin.
 
